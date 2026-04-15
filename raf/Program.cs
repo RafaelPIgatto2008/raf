@@ -24,7 +24,17 @@ namespace raf
                 case "status":
                     StatusCommand.Status();
                     break;
-
+                
+                case "commit":
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("Está faltando a mensagem");
+                        return;
+                    }
+                    
+                    CommitCommand.Execute(string.Join(" ", args.Skip(1)));
+                    break;
+                
                 default:
                     Console.WriteLine("Comando não reconhecido");
                     break;

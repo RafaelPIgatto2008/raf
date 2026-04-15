@@ -2,13 +2,18 @@
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>raf</ToolCommandName>
+        
+        <PackageId>raf</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Rafael Pigatto</Authors>
+        <Description>Raf like Git implementation in C#</Description>
 
-    <ItemGroup>
-      <Folder Include="Core\" />
-      <Folder Include="Infrastructure\" />
-    </ItemGroup>
+        <PackageType>DotnetTool</PackageType>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+        
+    </PropertyGroup>
 
 </Project>

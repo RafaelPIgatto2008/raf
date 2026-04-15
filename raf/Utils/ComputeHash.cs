@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
 using System.Linq;
 
@@ -8,10 +9,21 @@ public class Hash
 {
     public static string ComputeHash(string filePath)
     {
+        var content = File.ReadAllBytes(filePath);
+        return ComputeHash("pig", content);
+    }
+
+    public static string ComputeRawHash(string type, string content)
+    {
+        var bytes = System.Text.Encoding.UTF8.GetBytes(content);
+        return ComputeHash(type, bytes);
+    }
+
+    private static string ComputeHash(string type, byte[] content)
+    {
         using var sha1 = System.Security.Cryptography.SHA1.Create();
 
-        var content = File.ReadAllBytes(filePath);
-        var header = $"blob {content.Length}\0";
+        var header = $"{type} {content.Length}\0";
         var store = System.Text.Encoding.UTF8.GetBytes(header)
             .Concat(content)
             .ToArray();

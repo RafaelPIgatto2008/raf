@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -96,7 +97,7 @@ public class StatusCommand
         using var sha1 = System.Security.Cryptography.SHA1.Create();
 
         var content = File.ReadAllBytes(filePath);
-        var header = $"blob {content.Length}\0";
+        var header = $"pig {content.Length}\0";
         var store = System.Text.Encoding.UTF8.GetBytes(header)
             .Concat(content)
             .ToArray();

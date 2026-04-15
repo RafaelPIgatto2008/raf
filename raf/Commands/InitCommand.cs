@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
 
 namespace raf.Commands;
@@ -11,15 +12,17 @@ public static class InitCommand
 
         if (Directory.Exists(rafPath))
         {
-            Console.WriteLine("Repositório já inicializado.");
+            Console.WriteLine("Repositório já inicializado");
             return;
         }
 
         Directory.CreateDirectory(rafPath);
         Directory.CreateDirectory(Path.Combine(rafPath, "objects"));
         Directory.CreateDirectory(Path.Combine(rafPath, "refs"));
+        Directory.CreateDirectory(Path.Combine(rafPath, "refs", "heads"));
 
-        File.WriteAllText(Path.Combine(rafPath, "HEAD"), "File generate by Rafael Pigatto" + "ref: refs/heads/main");
+        File.WriteAllText(Path.Combine(rafPath, "HEAD"), "ref: refs/heads/main");
+        File.WriteAllText(Path.Combine(rafPath, "refs", "heads", "main"), string.Empty);
         
         File.WriteAllText(Path.Combine(rafPath, "index"), "");
 

@@ -26,7 +26,7 @@ public class AddCommand
 
         if (!File.Exists(target))
         {
-            Console.WriteLine("Arquivo não encontrado.");
+            Console.WriteLine("Arquivo não encontrado");
             return;
         }
 
@@ -37,7 +37,7 @@ public class AddCommand
     {
         if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
         {
-            Console.WriteLine("Arquivo não encontrado.");
+            Console.WriteLine("Arquivo não encontrado");
             return;
         }
 
