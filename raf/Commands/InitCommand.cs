@@ -20,7 +20,8 @@ public static class InitCommand
         Directory.CreateDirectory(Path.Combine(rafPath, "objects"));
         Directory.CreateDirectory(Path.Combine(rafPath, "refs"));
         Directory.CreateDirectory(Path.Combine(rafPath, "refs", "heads"));
-
+        Directory.CreateDirectory(Path.Combine(rafPath, "logs"));
+        
         File.WriteAllText(Path.Combine(rafPath, "HEAD"), "ref: refs/heads/main");
         File.WriteAllText(Path.Combine(rafPath, "refs", "heads", "main"), string.Empty);
         

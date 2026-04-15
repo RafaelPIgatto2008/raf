@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using raf.Commands;
 
@@ -16,6 +17,23 @@ namespace raf
                     InitCommand.InitRepository();
                     break;
                 
+                case "clean":
+                    Console.WriteLine("Tem certeza que deseja excluir o diretorio raf inteiro y/n ? ");
+                    var imput = Console.ReadLine();
+
+                    if (imput?.ToLower() != "y")
+                    {
+                        Console.WriteLine("Comando cancelado");
+                        return;
+                    }
+                    
+                    CleanCommand.Execute();
+                    break;
+                
+                case "help":
+                    ListCommand.Execute();
+                    break;
+
                 case "add":
                     var file = args.ElementAtOrDefault(1);
                     AddCommand.Add(file);

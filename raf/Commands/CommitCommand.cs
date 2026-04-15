@@ -10,7 +10,7 @@ public class CommitCommand
         var treeHash = TreeService.CreateTree();
         var commitHash = CommitService.Commit(treeHash, message);
 
-        HeadService.Update(commitHash, message);
+        HeadService.Update(commitHash);
 
         Console.WriteLine($"Commit criado: {commitHash}");
     }

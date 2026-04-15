@@ -4,7 +4,7 @@ namespace raf.Core;
 
 public static class HeadService
 {
-    public static void Update(string commitHash, string message)
+    public static void Update(string commitHash)
     {
         var headPath = Path.Combine(".raf", "HEAD");
         var headContent = File.ReadAllText(headPath).Trim();
@@ -18,7 +18,7 @@ public static class HeadService
             if (!string.IsNullOrEmpty(referenceDirectory))
                 Directory.CreateDirectory(referenceDirectory);
 
-            File.WriteAllText(fullReferencePath, message);
+            File.WriteAllText(fullReferencePath, commitHash);
             return;
         }
 
