@@ -24,7 +24,10 @@ public class Command
             new("clean", "Remove .raf"),
             new("help", "Lista comandos"),
             new("commit", "Salva as alterações feitas"),
-            new("update", "Atualiza a ferramenta raf")
+            new("update --tool", "Atualiza a ferramenta raf"),
+            new("switch Branch", "Troca de branch"),
+            new("switch -n Branch", "Cria uma branch e troca para ela"),
+            new("switch --list", "Lista de branchs criadas")
         };
             
         foreach (var cmd in commands)
