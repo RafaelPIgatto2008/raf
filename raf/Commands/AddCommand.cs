@@ -58,7 +58,7 @@ public class AddCommand
 
             foreach (var line in lines)
             {
-                var parts = line.Split('|');
+                var parts = line.Split(' ');
                 if (parts.Length == 2)
                     indexEntries[parts[0]] = parts[1];
             }
@@ -71,7 +71,7 @@ public class AddCommand
 
         // Save index
         var newLines = indexEntries
-            .Select(kvp => $"{kvp.Key}|{kvp.Value}")
+            .Select(kvp => $"{kvp.Key} {kvp.Value}")
             .ToArray();
 
         File.WriteAllLines(indexPath, newLines);

@@ -44,7 +44,7 @@ namespace raf
                     break;
                 
                 case "commit":
-                    if (args.Length < 2)
+                    if (args.Length < 2 && args[1] == string.Empty)
                     {
                         Console.WriteLine("Está faltando a mensagem");
                         return;
