@@ -53,6 +53,32 @@ namespace raf
                     CommitCommand.Execute(string.Join(" ", args.Skip(1)));
                     break;
                 
+                case "update":
+                    if (args.Length > 1 && args[1] == "--tool")
+                    {
+                        UpdateToolCommand.Execute();
+                    }
+
+                    break;
+                
+                case "switch":
+                    if (args.Length > 2 && args[0] == "-n" && args[1] != string.Empty)
+                    {
+                        BranchCommand.Create(args[1]);
+                    }
+
+                    if (args.Length > 1 && args[1] == "--list")
+                    {
+                        BranchCommand.ListBranches();
+                    }
+
+                    if (args.Length > 1 && args[1] != string.Empty)
+                    {
+                        BranchCommand.SwitchBranch(args[1]);
+                    }
+                    
+                    break;
+                
                 default:
                     Console.WriteLine("Comando não reconhecido");
                     break;

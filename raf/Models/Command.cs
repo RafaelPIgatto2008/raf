@@ -23,7 +23,8 @@ public class Command
             new("status", "Mostra status"),
             new("clean", "Remove .raf"),
             new("help", "Lista comandos"),
-            new("commit", "Salva as alterações feitas")
+            new("commit", "Salva as alterações feitas"),
+            new("update", "Atualiza a ferramenta raf")
         };
             
         foreach (var cmd in commands)
