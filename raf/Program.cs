@@ -62,19 +62,24 @@ namespace raf
                     break;
                 
                 case "switch":
-                    if (args.Length > 2 && args[0] == "-n" && args[1] != string.Empty)
+                    if (args.Length > 1 && args[1] == "-n" && args[2] != null)
                     {
-                        BranchCommand.Create(args[1]);
+                        BranchCommand.Create(args[2]);
                     }
 
-                    if (args.Length > 1 && args[1] == "--list")
+                    else if (args.Length > 1 && args[1] == "--list")
                     {
                         BranchCommand.ListBranches();
                     }
 
-                    if (args.Length > 1 && args[1] != string.Empty)
+                    else if (args.Length > 1 && args[1] != string.Empty)
                     {
                         BranchCommand.SwitchBranch(args[1]);
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Run the 'raf help' command for a list of commands about switch");
                     }
                     
                     break;

@@ -70,11 +70,12 @@ public static class UpdateToolCommand
         var script = $@"
             @echo off
             echo Buildando...
+            cd raf
             dotnet clean
-            dotnet pack -c Release
+            dotnet tool uninstall -g raf
 
             echo Atualizando tool...
-            dotnet tool update --global --add-source ./nupkg raf
+            dotnet tool install --global --add-source ./nupkg raf
 
             echo Atualizado
             pause

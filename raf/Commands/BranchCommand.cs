@@ -42,7 +42,7 @@ public static class BranchCommand
     
     public static void ListBranches()
     {
-        var path = Path.Combine(".raf", "refs", "HEAD");
+        var path = Path.Combine(".raf", "refs", "heads");
 
         var branchs = Directory.GetFiles(path)
             .Select(Path.GetFileName);
@@ -58,14 +58,28 @@ public static class BranchCommand
     public static void SwitchBranch(string name)
     {
         var path = Path.Combine(".raf", "refs", "heads", name);
-
+        var currentBranch = GetCurrentBranchName();
+        
         if (!File.Exists(path))
         {
             Console.WriteLine($"Branch {name} not found");
             return;
         }
+
+        if (currentBranch == name)
+        {
+            Console.WriteLine($"You are already on branch {name}");
+            return;
+        }
         
         File.WriteAllText(".raf/HEAD", $"refs/heads/{name}"); 
         Console.WriteLine($"Switched to branch name {name}");
+    }
+    
+    private static string GetCurrentBranchName()
+    {
+        var head = File.ReadAllText(".raf/HEAD").Trim();
+
+        return head.Replace("refs/heads/", "");
     }
 }
