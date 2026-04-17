@@ -86,6 +86,8 @@ namespace raf
                 
                 default:
                     Console.WriteLine("Comando não reconhecido");
+                    Console.WriteLine("Run the 'raf help' command for a list of commands");
+
                     break;
             }
         }

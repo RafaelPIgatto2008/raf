@@ -21,6 +21,7 @@ public static class InitCommand
         Directory.CreateDirectory(Path.Combine(rafPath, "refs"));
         Directory.CreateDirectory(Path.Combine(rafPath, "refs", "heads"));
         Directory.CreateDirectory(Path.Combine(rafPath, "logs"));
+        Directory.CreateDirectory(Path.Combine(rafPath, "stash"));
         File.WriteAllText(Path.Combine(rafPath, "COMMIT_MESSAGE"), null);
         
         File.WriteAllText(Path.Combine(rafPath, "HEAD"), "ref: refs/heads/main");

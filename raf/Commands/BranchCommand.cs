@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using raf.Core;
 
 namespace raf.Commands;
 
@@ -72,6 +73,13 @@ public static class BranchCommand
         {
             Console.WriteLine($"You are already on branch {name}");
             return;
+        }
+        
+        var commitHash = File.ReadAllText(path).Trim();
+        
+        if (!string.IsNullOrEmpty(commitHash))
+        {
+            CheckoutService.Checkout(commitHash);
         }
         
         File.WriteAllText(".raf/HEAD", $"refs/heads/{name}"); 
