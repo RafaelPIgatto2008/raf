@@ -13,7 +13,7 @@ public static class BranchCommand
 
         if (File.Exists(branchPath))
         {
-            Console.WriteLine("Branch já existe");
+            Console.WriteLine("Branch already exists");
             return;
         }
 
@@ -21,7 +21,7 @@ public static class BranchCommand
 
         File.WriteAllText(branchPath, currentCommit ?? "");
 
-        Console.WriteLine($"Branch criada, você está na branch {name}");
+        Console.WriteLine($"Branch created, you are now on branch {name}");
     }
     
     public static string GetCurrentCommit()

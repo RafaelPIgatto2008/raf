@@ -64,28 +64,28 @@ public class StatusCommand
 
         if (untracked.Any())
         {
-            Console.WriteLine("Não rastreados:");
+            Console.WriteLine("Untracked:");
             untracked.ForEach(f => Console.WriteLine($"  {f}"));
             Console.WriteLine();
         }
 
         if (stagedOnly.Any())
         {
-            Console.WriteLine("Pendentes:");
+            Console.WriteLine("Staged:");
             stagedOnly.ForEach(f => Console.WriteLine($"  {f}"));
             Console.WriteLine();
         }
 
         if (modified.Any())
         {
-            Console.WriteLine("Modificados:");
+            Console.WriteLine("Modified:");
             modified.ForEach(f => Console.WriteLine($"  {f}"));
             Console.WriteLine();
         }
 
         if (!untracked.Any() && !stagedOnly.Any() && !modified.Any())
         {
-            Console.WriteLine("Nada para mostrar");
+            Console.WriteLine("Nothing to show");
         }
     }
     

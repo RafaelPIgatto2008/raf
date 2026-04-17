@@ -12,7 +12,7 @@ public static class InitCommand
 
         if (Directory.Exists(rafPath))
         {
-            Console.WriteLine("Repositório já inicializado");
+            Console.WriteLine("Repository already initialized");
             return;
         }
 
@@ -29,6 +29,6 @@ public static class InitCommand
         
         File.WriteAllText(Path.Combine(rafPath, "index"), "");
 
-        Console.WriteLine("Repositório inicializado com sucesso");
+        Console.WriteLine("Repository initialized successfully");
     }
 }

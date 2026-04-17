@@ -18,12 +18,12 @@ namespace raf
                     break;
                 
                 case "clean":
-                    Console.WriteLine("Tem certeza que deseja excluir o diretorio raf inteiro y/n ? ");
+                    Console.WriteLine("Are you sure you want to delete the entire raf directory y/n?");
                     var imput = Console.ReadLine();
 
                     if (imput?.ToLower() != "y")
                     {
-                        Console.WriteLine("Comando cancelado");
+                        Console.WriteLine("Command canceled");
                         return;
                     }
                     
@@ -46,7 +46,7 @@ namespace raf
                 case "commit":
                     if (args.Length < 2 && args[1] == string.Empty)
                     {
-                        Console.WriteLine("Está faltando a mensagem");
+                        Console.WriteLine("Missing commit message");
                         return;
                     }
                     
@@ -85,7 +85,7 @@ namespace raf
                     break;
                 
                 default:
-                    Console.WriteLine("Comando não reconhecido");
+                    Console.WriteLine("Command not recognized");
                     Console.WriteLine("Run the 'raf help' command for a list of commands");
 
                     break;

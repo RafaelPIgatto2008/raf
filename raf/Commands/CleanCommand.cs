@@ -12,25 +12,25 @@ public static class CleanCommand
 
         if (!Directory.Exists(rafPath))
         {
-            Console.WriteLine($"Não foi possivel encontrar o diretorio {rafPath}");
+            Console.WriteLine($"Could not find directory {rafPath}");
             return;
         }
         
         if (!Directory.Exists(objectsPath))
         {
-            Console.WriteLine("Diretorio invalido, comando cancelado");
+            Console.WriteLine("Invalid directory, command canceled");
             return;
         }
         
         var indexContent = File.ReadAllLines(Path.Combine(rafPath, "index"));
         if (indexContent.Length > 0)
         {
-            Console.WriteLine("Você tem arquivos alterados e salvos no index, deseja excluir o historico dos arquivos y/n ?");
+            Console.WriteLine("You have changed files saved in the index. Do you want to delete the file history y/n?");
             var imput = Console.ReadLine();
 
             if (imput?.ToLower() != "y")
             {
-                Console.WriteLine("Cancelando a exclusão do diretorio");
+                Console.WriteLine("Canceling directory deletion");
                 return;
             }
         }

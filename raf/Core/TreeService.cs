@@ -12,7 +12,7 @@ public static class TreeService
         var indexPath = Path.Combine(".raf", "index");
         
         if (!File.Exists(indexPath))
-            throw new Exception("Index não encontrado");
+            throw new Exception("Index not found");
 
         var lines = File.ReadAllLines(indexPath);
 
@@ -21,7 +21,7 @@ public static class TreeService
             var parts = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length < 2)
-                throw new Exception($"Linha inválida no index: '{line}'");
+                throw new Exception($"Invalid line in index: '{line}'");
             
             var fileName = parts[0];
             var hashFile = parts[1];

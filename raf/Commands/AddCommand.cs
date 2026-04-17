@@ -14,7 +14,7 @@ public class AddCommand
     {
         if (string.IsNullOrEmpty(target))
         {
-            Console.WriteLine("Informe um arquivo ou '.'");
+            Console.WriteLine("Provide a file or '.'");
             return;
         }
 
@@ -26,7 +26,7 @@ public class AddCommand
 
         if (!File.Exists(target))
         {
-            Console.WriteLine("Arquivo não encontrado");
+            Console.WriteLine("File not found");
             return;
         }
 
@@ -37,7 +37,7 @@ public class AddCommand
     {
         if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
         {
-            Console.WriteLine("Arquivo não encontrado");
+            Console.WriteLine("File not found");
             return;
         }
 
@@ -76,7 +76,7 @@ public class AddCommand
 
         File.WriteAllLines(indexPath, newLines);
 
-        Console.WriteLine($"Adicionado: {fileName}");
+        Console.WriteLine($"Added: {fileName}");
     }
     
     public static void AddAllFiles()
@@ -92,6 +92,6 @@ public class AddCommand
             AddSingleFile(file);
         }
 
-        Console.WriteLine("Todos os arquivos adicionados");
+        Console.WriteLine("All files added");
     }
 }

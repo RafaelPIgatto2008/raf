@@ -31,6 +31,6 @@ public static class ObjectReader
                 return line.Replace("tree ", "").Trim();
         }
 
-        throw new Exception("Tree não encontrada");
+        throw new Exception("Tree not found");
     }
 }

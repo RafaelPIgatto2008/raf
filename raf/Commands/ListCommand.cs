@@ -9,7 +9,7 @@ public static class ListCommand
 {
     public static void Execute()
     {
-        Console.WriteLine("Comandos: ");
+        Console.WriteLine("Commands:");
         Command.AllCommands();
         Console.WriteLine("=======================================");
     }

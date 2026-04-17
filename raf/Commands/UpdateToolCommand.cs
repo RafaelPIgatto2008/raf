@@ -10,13 +10,13 @@ public static class UpdateToolCommand
 {
     public static void Execute()
     {
-        Console.WriteLine("Atualizando a ferramenta raf...");
+        Console.WriteLine("Updating the raf tool...");
 
         var projectPath = FindProjectPath();
 
         if (projectPath == null)
         {
-            Console.WriteLine("Projeto não encontrado");
+            Console.WriteLine("Project not found");
             return;
         }
 
@@ -42,7 +42,7 @@ public static class UpdateToolCommand
 
         if (!match.Success)
         {
-            Console.WriteLine("Versão não encontrada");
+            Console.WriteLine("Version not found");
             return;
         }
 
@@ -60,7 +60,7 @@ public static class UpdateToolCommand
 
         File.WriteAllText(csprojPath, content);
 
-        Console.WriteLine($"Versão atualizada: {newVersion}");
+        Console.WriteLine($"Version updated: {newVersion}");
     }
     
     private static void GenerateAndRunScript(string projectPath)
@@ -69,16 +69,16 @@ public static class UpdateToolCommand
 
         var script = $@"
             @echo off
-            echo Buildando...
+            echo Building...
             cd raf
             dotnet clean
             dotnet tool uninstall -g raf
 
-            echo Atualizando tool...
+            echo Updating tool...
             dotnet tool install --global --add-source ./nupkg raf
             dotnet pack -c Release
 
-            echo Atualizado
+            echo Updated
             pause
             ";
         

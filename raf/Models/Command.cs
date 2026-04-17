@@ -18,16 +18,16 @@ public class Command
     {
         var commands = new List<Command>
         {
-            new("init", "Inicializa repositório"),
-            new("add", "Adiciona arquivos"),
-            new("status", "Mostra status"),
+            new("init", "Initialize repository"),
+            new("add", "Add files"),
+            new("status", "Show status"),
             new("clean", "Remove .raf"),
-            new("help", "Lista comandos"),
-            new("commit", "Salva as alterações feitas"),
-            new("update --tool", "Atualiza a ferramenta raf"),
-            new("switch Branch", "Troca de branch"),
-            new("switch -n Branch", "Cria uma branch e troca para ela"),
-            new("switch --list", "Lista de branchs criadas")
+            new("help", "List commands"),
+            new("commit", "Save changes"),
+            new("update --tool", "Update the raf tool"),
+            new("switch Branch", "Switch branch"),
+            new("switch -n Branch", "Create a branch and switch to it"),
+            new("switch --list", "List created branches")
         };
             
         foreach (var cmd in commands)
