@@ -23,7 +23,7 @@ public static class BranchCommand
         Console.WriteLine($"Branch criada, você está na branch {name}");
     }
     
-    private static string GetCurrentCommit()
+    public static string GetCurrentCommit()
     {
         var headPath = Path.Combine(".raf", "HEAD");
 
@@ -76,10 +76,19 @@ public static class BranchCommand
         Console.WriteLine($"Switched to branch name {name}");
     }
     
-    private static string GetCurrentBranchName()
+    public static string GetCurrentBranchName()
     {
         var head = File.ReadAllText(".raf/HEAD").Trim();
 
         return head.Replace("refs/heads/", "");
+    }
+    
+    public static void UpdateCurrentBranch(string commitHash)
+    {
+        var headRef = File.ReadAllText(".raf/HEAD").Trim();
+
+        var branchPath = Path.Combine(".raf", headRef);
+
+        File.WriteAllText(branchPath, commitHash);
     }
 }

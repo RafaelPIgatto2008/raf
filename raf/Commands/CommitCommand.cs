@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using raf.Core;
 
 namespace raf.Commands;
@@ -9,8 +11,10 @@ public class CommitCommand
     {
         var treeHash = TreeService.CreateTree();
         var commitHash = CommitService.Commit(treeHash, message);
-
+        
         HeadService.Update(commitHash);
+        
+        BranchCommand.UpdateCurrentBranch(commitHash);
 
         Console.WriteLine($"Commit criado: {commitHash}");
     }
