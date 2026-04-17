@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using raf.Commands;
 using raf.Utils;
 
@@ -12,13 +14,23 @@ public class CommitService
         var timeStamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         var currentCommit = BranchCommand.GetCurrentCommit();
         
-        File.WriteAllText(Path.Combine(".raf", "COMMIT_MESSAGE_last"), message);
+        File.WriteAllText(Path.Combine(".raf", "COMMIT_MESSAGE"), message);
 
-        var content = $@"tree {treeHash}  parent {currentCommit} date {timeStamp}  message {message}";
+        var content = new StringBuilder();
         
-        var hash = Hash.ComputeRawHash("commit", content);
+        content.AppendLine("tree " + treeHash);
+        
+        if (!string.IsNullOrEmpty(currentCommit))
+        {
+            content.AppendLine("parent " + currentCommit);
+        }
+        
+        content.AppendLine("time: " + timeStamp);
+        content.AppendLine("message: " + message);
+        
+        var hash = Hash.ComputeRawHash("commit", content.ToString());
 
-        Save.SaveRawObject(hash, "commit", content);
+        Save.SaveRawObject(hash, "commit", content.ToString());
 
         return hash;
     }

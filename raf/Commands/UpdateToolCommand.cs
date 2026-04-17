@@ -76,6 +76,7 @@ public static class UpdateToolCommand
 
             echo Atualizando tool...
             dotnet tool install --global --add-source ./nupkg raf
+            dotnet pack -c Release
 
             echo Atualizado
             pause

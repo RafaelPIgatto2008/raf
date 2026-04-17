@@ -25,19 +25,21 @@ public static class BranchCommand
     
     public static string GetCurrentCommit()
     {
-        var headPath = Path.Combine(".raf", "HEAD");
+        var currentBranch = GetCurrentBranchName();
+        var headPath = Path.Combine(".raf", "refs", "heads", currentBranch);
 
         if (!File.Exists(headPath))
             return null;
 
-        var headRef = File.ReadAllText(headPath).Trim();
+        var commitHash = File.ReadAllText(headPath);
 
-        var branchPath = Path.Combine(".raf", headRef);
-
-        if (!File.Exists(branchPath))
+        if (string.IsNullOrEmpty(commitHash))
+        {
+            Console.WriteLine("This commit don´t have parents");
             return null;
-
-        return File.ReadAllText(branchPath).Trim();
+        }
+        
+        return commitHash;
     }
     
     public static void ListBranches()
@@ -80,13 +82,18 @@ public static class BranchCommand
     {
         var head = File.ReadAllText(".raf/HEAD").Trim();
 
-        return head.Replace("refs/heads/", "");
+        return head.Replace("ref: refs/heads/", "");
     }
     
     public static void UpdateCurrentBranch(string commitHash)
     {
         var headRef = File.ReadAllText(".raf/HEAD").Trim();
 
+        if (headRef.StartsWith("ref: "))
+        {
+            headRef = headRef.Replace("ref: ", "");
+        }
+        
         var branchPath = Path.Combine(".raf", headRef);
 
         File.WriteAllText(branchPath, commitHash);

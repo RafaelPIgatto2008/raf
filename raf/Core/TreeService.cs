@@ -18,7 +18,7 @@ public static class TreeService
 
         var treeLines = lines.Select(line =>
         {
-            var parts = line.Split('|', StringSplitOptions.RemoveEmptyEntries);
+            var parts = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length < 2)
                 throw new Exception($"Linha inválida no index: '{line}'");
