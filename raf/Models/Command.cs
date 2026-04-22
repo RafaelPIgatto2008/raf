@@ -27,7 +27,9 @@ public class Command
             new("update --tool", "Update the raf tool"),
             new("switch Branch", "Switch branch"),
             new("switch -n Branch", "Create a branch and switch to it"),
-            new("switch --list", "List created branches")
+            new("switch --list", "List created branches"),
+            new("reset <file>", "Reset the selected file in index"),
+            new("reset .", "Reset all files in index")
         };
             
         foreach (var cmd in commands)

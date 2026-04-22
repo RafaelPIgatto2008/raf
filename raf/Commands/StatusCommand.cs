@@ -60,8 +60,6 @@ public class StatusCommand
             .Where(f => allFiles.Contains(f))
             .ToList();
 
-        Console.WriteLine("==== STATUS ====\n");
-
         if (untracked.Any())
         {
             Console.WriteLine("Untracked:");

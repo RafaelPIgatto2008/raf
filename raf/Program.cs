@@ -44,7 +44,7 @@ namespace raf
                     break;
                 
                 case "commit":
-                    if (args.Length < 2 && args[1] == string.Empty)
+                    if (args.Length < 2 && string.IsNullOrWhiteSpace(args[1]))
                     {
                         Console.WriteLine("Missing commit message");
                         return;
@@ -82,6 +82,16 @@ namespace raf
                         Console.WriteLine("Run the 'raf help' command for a list of commands about switch");
                     }
                     
+                    break;
+                
+                case "reset":
+                    if (args.Length > 1 && string.IsNullOrEmpty(args[1]))
+                    {
+                        Console.WriteLine("Missing reset target");
+                        return;
+                    }
+                    
+                    ResetCommand.Execute(args[1]);
                     break;
                 
                 default:
