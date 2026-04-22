@@ -50,12 +50,6 @@ namespace raf
                         return;
                     }
                     
-                    else if (args[1] == "--list")
-                    {
-                        CommitCommand.List();
-                        break;
-                    }
-                    
                     CommitCommand.Execute(string.Join(" ", args.Skip(1)));
                     break;
                 
@@ -64,7 +58,12 @@ namespace raf
                     {
                         UpdateToolCommand.Execute();
                     }
-
+                    
+                    Console.WriteLine("Did you mean 'update --tool'? ");
+                    break;
+                
+                case "log":
+                    CommitCommand.List();
                     break;
                 
                 case "switch":

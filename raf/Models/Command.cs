@@ -24,6 +24,7 @@ public class Command
             new("clean", "Remove .raf"),
             new("help", "List commands"),
             new("commit", "Save changes"),
+            new("commit --list", "List of commits"),
             new("update --tool", "Update the raf tool"),
             new("switch Branch", "Switch branch"),
             new("switch -n Branch", "Create a branch and switch to it"),
