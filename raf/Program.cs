@@ -50,6 +50,12 @@ namespace raf
                         return;
                     }
                     
+                    else if (args[1] == "--list")
+                    {
+                        CommitCommand.List();
+                        break;
+                    }
+                    
                     CommitCommand.Execute(string.Join(" ", args.Skip(1)));
                     break;
                 
