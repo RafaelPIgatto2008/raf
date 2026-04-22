@@ -24,27 +24,30 @@ public class CommitCommand
     public static void List()
     {
         var path = Path.Combine(".raf", "objects");
-        
+
         if (!Directory.Exists(path))
         {
-            Console.WriteLine("Directory don´t exist");
+            Console.WriteLine("No commits found.");
             return;
         }
-        
-        var files = Directory.GetFiles(path);
-        
+
+        var files = Directory
+            .GetFiles(path)
+            .OrderByDescending(File.GetCreationTime)
+            .ToList();
+
         foreach (var file in files)
         {
             var lines = File.ReadAllLines(file);
 
-            string hashLine = "";
+            string commitLine = "";
             string timeLine = "";
             string message = "";
 
             foreach (var line in lines)
             {
                 if (line.StartsWith("commit"))
-                    hashLine = line;
+                    commitLine = line;
 
                 if (line.StartsWith("time:"))
                     timeLine = line.Replace("time:", "").Trim();
@@ -53,8 +56,8 @@ public class CommitCommand
                     message = line.Replace("message:", "").Trim();
             }
 
-            var parts = hashLine.Split(' ');
-            var hash = parts[1];
+            var parts = commitLine.Split(' ');
+            var hash = parts.Length > 1 ? parts[1] : "unknown";
 
             var date = DateTimeOffset
                 .FromUnixTimeSeconds(long.Parse(timeLine))
@@ -70,7 +73,5 @@ public class CommitCommand
             Console.WriteLine($"    {message}");
             Console.WriteLine();
         }
-        
-        Console.WriteLine("All commits executed list");
     }
 }
