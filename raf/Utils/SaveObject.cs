@@ -24,7 +24,7 @@ public static class Save
 
     private static byte[] BuildObjectBytes(string type, byte[] content)
     {
-        var header = $"{type} {content.Length}\0";
+        var header = $"{type} {content.Length}\n";
         return System.Text.Encoding.UTF8.GetBytes(header)
             .Concat(content)
             .ToArray();

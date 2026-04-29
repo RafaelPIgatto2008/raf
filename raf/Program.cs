@@ -57,6 +57,7 @@ namespace raf
                     if (args.Length > 1 && args[1] == "--tool")
                     {
                         UpdateToolCommand.Execute();
+                        break;
                     }
                     
                     Console.WriteLine("Did you mean 'update --tool'? ");

@@ -30,45 +30,59 @@ public class CommitCommand
             Console.WriteLine("No commits found.");
             return;
         }
-
+        
         var files = Directory
-            .GetFiles(path)
+            .GetDirectories(path)
+            .SelectMany(Directory.GetFiles)
             .OrderByDescending(File.GetCreationTime)
             .ToList();
-
+        
         foreach (var file in files)
         {
             var lines = File.ReadAllLines(file);
-
-            string commitLine = "";
+            
             string timeLine = "";
             string message = "";
-
+            string treeHash = "";
+            
             foreach (var line in lines)
-            {
-                if (line.StartsWith("commit"))
-                    commitLine = line;
-
-                if (line.StartsWith("time:"))
-                    timeLine = line.Replace("time:", "").Trim();
-
-                if (line.StartsWith("message:"))
-                    message = line.Replace("message:", "").Trim();
+            { 
+                if (line.StartsWith("time:")) 
+                    timeLine = line.Substring("time:".Length).Trim();
+                
+                else if (line.StartsWith("message:")) 
+                    message = line.Substring("message:".Length).Trim();
+                
+                else if (line.StartsWith("tree "))
+                    treeHash = line.Substring("tree ".Length).Trim();
             }
-
-            var parts = commitLine.Split(' ');
-            var hash = parts.Length > 1 ? parts[1] : "unknown";
-
+            
+            if (timeLine == null)
+            { 
+                continue;
+            }
+            
+            if (!long.TryParse(timeLine, out var unixTime))
+            {
+                continue;
+            }
+            
             var date = DateTimeOffset
-                .FromUnixTimeSeconds(long.Parse(timeLine))
+                .FromUnixTimeSeconds(unixTime)
                 .DateTime;
-
+            
+            var hash = Path.GetFileName(file);
+            
+            var parts = treeHash.Split(' ');
+            var tree = parts.Length > 1 ? parts[1] : "Unknown";
+            
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"commit {hash}");
-
+            Console.WriteLine($"commit: {hash}");
+            Console.WriteLine($"Tree: {tree}");
+            
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Date: {date:dd/MM/yyyy HH:mm}");
-
+            Console.WriteLine($"Date: {date:dd/MM/yyyy}");
+            
             Console.ResetColor();
             Console.WriteLine($"    {message}");
             Console.WriteLine();
