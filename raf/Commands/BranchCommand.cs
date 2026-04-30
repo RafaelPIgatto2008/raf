@@ -21,8 +21,6 @@ public static class BranchCommand
 
         File.WriteAllText(branchPath, currentCommit ?? "");
 
-        SwitchBranch(name);
-        
         Console.WriteLine($"Branch created, you are now on branch {name}");
     }
     
