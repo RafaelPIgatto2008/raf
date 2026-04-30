@@ -30,7 +30,8 @@ public class Command
             new("switch -n Branch", "Create a branch and switch to it"),
             new("switch --list", "List created branches"),
             new("reset <file>", "Reset the selected file in index"),
-            new("reset .", "Reset all files in index")
+            new("reset .", "Reset all files in index"),
+            new("log", "Show the history of commits")
         };
             
         foreach (var cmd in commands)
