@@ -72,11 +72,11 @@ public static class UpdateToolCommand
             echo Building...
             cd raf
             dotnet clean
-            dotnet tool uninstall -g raf
+            dotnet pack -c Release
 
             echo Updating tool...
+            dotnet tool uninstall -g raf
             dotnet tool install --global --add-source ./nupkg raf
-            dotnet pack -c Release
 
             echo Updated
             pause

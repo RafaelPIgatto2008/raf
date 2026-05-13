@@ -28,7 +28,7 @@ public class StatusCommand
 
             foreach (var line in lines)
             {
-                var parts = line.Split('|');
+                var parts = line.Split(' ');
                 if (parts.Length == 2)
                     stagedFiles.Add(parts[0], parts[1]);
             }

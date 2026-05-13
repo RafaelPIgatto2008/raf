@@ -72,9 +72,7 @@ public class CommitCommand
                 .DateTime;
             
             var hash = Path.GetFileName(file);
-            
-            var parts = treeHash.Split(' ');
-            var tree = parts.Length > 1 ? parts[1] : "Unknown";
+            var tree = treeHash;
             
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"commit: {hash}");

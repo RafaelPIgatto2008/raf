@@ -44,7 +44,7 @@ namespace raf
                     break;
                 
                 case "commit":
-                    if (args.Length < 2 && string.IsNullOrWhiteSpace(args[1]))
+                    if (args.Length < 2 || string.IsNullOrWhiteSpace(args[1]))
                     {
                         Console.WriteLine("Missing commit message");
                         return;
@@ -68,7 +68,7 @@ namespace raf
                     break;
                 
                 case "switch":
-                    if (args.Length > 1 && args[1] == "-n" && args[2] != null)
+                    if (args.Length > 2 && args[1] == "-n" && args[2] != null)
                     {
                         BranchCommand.Create(args[2]);
                     }

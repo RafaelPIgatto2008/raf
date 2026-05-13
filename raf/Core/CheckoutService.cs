@@ -30,14 +30,26 @@ public static class CheckoutService
     
     public static bool HasChanges()
     {
+        var indexPath = Path.Combine(".raf", "index");
+
+        if (!File.Exists(indexPath))
+            return false;
+
+        var index = File.ReadAllLines(indexPath)
+            .Select(l => l.Split(' '))
+            .Where(p => p.Length == 2)
+            .ToDictionary(p => p[0], p => p[1]);
+
         var files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.*", SearchOption.AllDirectories)
             .Where(f => !f.Contains(".raf"));
 
         foreach (var file in files)
         {
+            var fileName = Path.GetFileName(file);
             var currentHash = Hash.ComputeHash(file);
-            
-            return true;
+
+            if (!index.TryGetValue(fileName, out var stagedHash) || stagedHash != currentHash)
+                return true;
         }
 
         return false;
